@@ -5,6 +5,7 @@ import type { NoviBoolean } from '@/structs/NoviBoolean';
 import type { NoviCustom } from '@/structs/NoviCustom';
 import type { NoviDate } from '@/structs/NoviDate';
 import type { NoviEnum } from '@/structs/NoviEnum';
+import type { NoviFile } from '@/structs/NoviFile';
 import type { NoviFunction } from '@/structs/NoviFunction';
 import type { NoviInstance } from '@/structs/NoviInstance';
 import type { NoviInteger } from '@/structs/NoviInteger';
@@ -58,7 +59,8 @@ export type NoviSchema =
 	| NoviArray<NoviSchema>
 	| NoviCustom<unknown>
 	| NoviFunction
-	| NoviSymbol;
+	| NoviSymbol
+	| NoviFile;
 
 export type NoviObjectRecord = Record<string, NoviSchema>;
 

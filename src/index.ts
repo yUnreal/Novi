@@ -5,6 +5,7 @@ import { NoviCatch } from './structs/NoviCatch';
 import { NoviCustom } from './structs/NoviCustom';
 import { NoviDate } from './structs/NoviDate';
 import { NoviEnum } from './structs/NoviEnum';
+import { NoviFile } from './structs/NoviFile';
 import { NoviFunction } from './structs/NoviFunction';
 import { NoviInstance } from './structs/NoviInstance';
 import { NoviInteger } from './structs/NoviInteger';
@@ -58,6 +59,8 @@ export namespace n {
 		shape: Shape,
 		options?: NoviSchemaOptions,
 	) => new NoviObject(shape, options);
+
+	export const file = (options?: NoviSchemaOptions) => new NoviFile(options);
 
 	export const date = (options?: CoercibleSchemaOptions) =>
 		new NoviDate(options);
