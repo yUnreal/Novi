@@ -1,0 +1,27 @@
+{
+	"name": "novi",
+	"version": "1.0.0",
+	"author": {
+		"name": "Unreal",
+		"url": "https://github.com/yUnreal"
+	},
+	"module": "src/index.ts",
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"bugs": {
+		"url": "https://github.com/yUnreal/novi/issues"
+	},
+	"description": "Ergonomic library for schema parsing",
+	"keywords": ["typescript", "schema", "validation", "parse", "type"],
+	"scripts": {
+		"test": "bun run index.test.ts",
+		"format": "bunx biome check --write .",
+		"build": "tsc && bun build src/index.ts --minify"
+	},
+	"type": "module"
+}
