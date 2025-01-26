@@ -12,6 +12,14 @@ export class NoviArray<Item extends NoviSchema> extends NoviBase<
 		super(options);
 	}
 
+	public min(length: number, message?: string) {
+		return this.effect((array) => array.length >= length, message);
+	}
+
+	public max(length: number, message?: string) {
+		return this.effect(array => array.length <= length, message);
+	}
+
 	public _parse(value: unknown, path?: string) {
 		if (!Array.isArray(value))
 			throw NoviError.typeError({
