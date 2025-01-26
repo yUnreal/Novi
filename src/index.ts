@@ -165,23 +165,5 @@ export namespace n {
 		schema: Schema,
 		options?: NoviSchemaOptions,
 	) => new NoviCatch(fun, schema, options);
-
-	export const coerce = {
-		string(options?: NoviSchemaOptions) {
-			return string({ ...options, coerce: true });
-		},
-		number(options?: NoviSchemaOptions) {
-			return number({ ...options, coerce: true });
-		},
-		bigint(options?: NoviSchemaOptions) {
-			return bigint({ ...options, coerce: true });
-		},
-		boolean(options?: NoviSchemaOptions) {
-			return boolean({ ...options, coerce: true });
-		},
-		date(options?: NoviSchemaOptions) {
-			return date({ ...options, coerce: true });
-		},
-	};
 	//#endregion
 }
