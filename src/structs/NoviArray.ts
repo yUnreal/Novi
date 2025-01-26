@@ -20,9 +20,10 @@ export class NoviArray<Item extends NoviSchema> extends NoviBase<
 				custom: this.options?.errors?.type,
 			});
 
-		for (const index in value) {
-			value[index] = this.item.parse(value[index], { path });
-		}
+		for (const index in value)
+			value[index] = this.item.parse(value[index], {
+				path: path ? `${path}[${index}]` : index,
+			});
 
 		return value;
 	}

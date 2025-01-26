@@ -27,7 +27,10 @@ export class NoviTuple<const Items extends NoviSchema[]> extends NoviBase<
 
 		const { items } = this;
 
-		for (const index in items) value[index] = items[index].parse(value[index]);
+		for (const index in items)
+			value[index] = items[index].parse(value[index], {
+				path: path ? `${path}[${index}]` : index,
+			});
 
 		return value as Tuplify<Items>;
 	}
