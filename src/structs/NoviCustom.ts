@@ -1,11 +1,11 @@
 import { NoviError } from '@/errors/NoviError';
-import type { NoviSchemaOptions } from '@/types/novi';
+import type { NoviCustomSchemaOptions } from '@/types/novi';
 import { NoviBase } from './NoviBase';
 
 export class NoviCustom<Type> extends NoviBase<Type> {
 	public constructor(
 		private readonly fn?: (value: unknown) => boolean,
-		options?: NoviSchemaOptions,
+		public options?: NoviCustomSchemaOptions,
 	) {
 		super(options);
 	}
@@ -16,7 +16,10 @@ export class NoviCustom<Type> extends NoviBase<Type> {
 		if (fn) {
 			if (fn(value)) return value as Type;
 
-			throw new NoviError('Custom schema failed for input', path);
+			throw new NoviError(
+				this.options?.message ?? 'Custom schema failed for input',
+				path,
+			);
 		}
 
 		return value as Type;

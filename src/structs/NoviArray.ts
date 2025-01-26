@@ -17,7 +17,7 @@ export class NoviArray<Item extends NoviSchema> extends NoviBase<
 	}
 
 	public max(length: number, message?: string) {
-		return this.effect(array => array.length <= length, message);
+		return this.effect((array) => array.length <= length, message);
 	}
 
 	public _parse(value: unknown, path?: string) {

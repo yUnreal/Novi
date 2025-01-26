@@ -30,6 +30,7 @@ import { NoviUnknown } from './structs/NoviUnknown';
 import type {
 	CoercibleSchemaOptions,
 	Constructor,
+	NoviCustomSchemaOptions,
 	NoviEnumShape,
 	NoviObjectRecord,
 	NoviPropertyKey,
@@ -157,7 +158,7 @@ export namespace n {
 
 	export const custom = <Type>(
 		fun?: (value: unknown) => boolean,
-		options?: NoviSchemaOptions,
+		options?: NoviCustomSchemaOptions,
 	) => new NoviCustom<Type>(fun, options);
 
 	export const _catch = <Schema extends NoviSchema>(

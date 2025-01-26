@@ -109,6 +109,10 @@ export interface NoviSchemaOptions {
 	errors?: NoviCustomErrorOptions;
 }
 
+export interface NoviCustomSchemaOptions extends NoviSchemaOptions {
+	message?: string;
+}
+
 export interface NoviCustomErrorOptions {
 	/**
 	 * Use this error message when the type does not match
