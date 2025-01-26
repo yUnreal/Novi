@@ -8,7 +8,6 @@ import { NoviEnum } from './structs/NoviEnum';
 import { NoviFile } from './structs/NoviFile';
 import { NoviFunction } from './structs/NoviFunction';
 import { NoviInstance } from './structs/NoviInstance';
-import { NoviInteger } from './structs/NoviInteger';
 import { NoviIntersection } from './structs/NoviIntersection';
 import { NoviJWT } from './structs/NoviJWT';
 import { NoviLiteral } from './structs/NoviLiteral';
@@ -46,8 +45,6 @@ export namespace n {
 		new NoviString(options);
 	export const number = (options?: CoercibleSchemaOptions) =>
 		new NoviNumber(options);
-	export const integer = (options?: CoercibleSchemaOptions) =>
-		new NoviInteger(options);
 	export const boolean = (options?: CoercibleSchemaOptions) =>
 		new NoviBoolean(options);
 	export const bigint = (options?: CoercibleSchemaOptions) =>
@@ -184,9 +181,6 @@ export namespace n {
 		},
 		date(options?: NoviSchemaOptions) {
 			return date({ ...options, coerce: true });
-		},
-		integer(options?: NoviSchemaOptions) {
-			return integer({ ...options, coerce: true });
 		},
 	};
 	//#endregion

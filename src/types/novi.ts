@@ -8,7 +8,6 @@ import type { NoviEnum } from '@/structs/NoviEnum';
 import type { NoviFile } from '@/structs/NoviFile';
 import type { NoviFunction } from '@/structs/NoviFunction';
 import type { NoviInstance } from '@/structs/NoviInstance';
-import type { NoviInteger } from '@/structs/NoviInteger';
 import type { NoviIntersection } from '@/structs/NoviIntersection';
 import type { NoviJWT } from '@/structs/NoviJWT';
 import type { NoviLiteral } from '@/structs/NoviLiteral';
@@ -54,7 +53,6 @@ export type NoviSchema =
 	| NoviPromise<NoviSchema>
 	| NoviEnum<NoviEnumShape>
 	| NoviJWT<NoviObject<NoviObjectRecord>>
-	| NoviInteger
 	| NoviNullish<NoviSchema>
 	| NoviArray<NoviSchema>
 	| NoviCustom<unknown>
@@ -89,7 +87,6 @@ export type NoviPropertyKey =
 	| NoviNumber
 	| NoviLiteral<string | number>
 	| NoviUnion<NoviPropertyKey[]>
-	| NoviInteger
 	| NoviCustom<string | number>;
 
 export type Constructor = new (...args: unknown[]) => unknown;

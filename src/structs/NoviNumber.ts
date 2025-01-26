@@ -7,6 +7,10 @@ export class NoviNumber extends NoviBase<number> {
 		super(options);
 	}
 
+	public int(message?: string) {
+		return this.effect(Number.isSafeInteger, message);
+	}
+
 	public min(value: number, message?: string) {
 		return this.effect((number) => number >= value, message);
 	}
