@@ -155,10 +155,10 @@ export namespace n {
 		options?: NoviSchemaOptions,
 	) => new NoviReadonly(schema, options);
 
-	export const custom = <Return>(
-		fn: (value: unknown) => boolean,
+	export const custom = <Type>(
+		fun?: (value: unknown) => boolean,
 		options?: NoviSchemaOptions,
-	) => new NoviCustom<Return>(fn, options);
+	) => new NoviCustom<Type>(fun, options);
 
 	export const _catch = <Schema extends NoviSchema>(
 		fun: () => Schema['type'],
