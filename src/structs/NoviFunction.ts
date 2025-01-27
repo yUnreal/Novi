@@ -36,12 +36,12 @@ export class NoviFunction<
 	public decorate(fn: (...args: Tuplify<Args>) => Return['type']) {
 		if (!this.args || !this.return)
 			throw new NoviError(
-				'Novi function expectes a valid return and args schema',
+				'Novi function expects a valid return and args schema',
 			);
 
 		return ((...args: Tuplify<Args>) => {
 			for (const index in this.args) {
-				this.args[index].parse(args[index]);
+				args[index] = this.args[index].parse(args[index]);
 			}
 
 			return this.return.parse(fn(...args));
