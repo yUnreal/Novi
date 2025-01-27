@@ -5,11 +5,19 @@ import { NoviBase } from './NoviBase';
 export class NoviTuple<const Items extends NoviSchema[]> extends NoviBase<
 	Tuplify<Items>
 > {
+	private _rest?: NoviSchema;
+
 	public constructor(
 		public readonly items: Items,
 		options?: NoviSchemaOptions,
 	) {
 		super(options);
+	}
+
+	public rest<Rest extends NoviSchema>(rest: Rest) {
+		this._rest = rest;
+		
+		return <NoviTuple<[...Items, ...Rest[]]>><unknown>this;
 	}
 
 	public _parse(value: unknown, path?: string) {
@@ -19,18 +27,24 @@ export class NoviTuple<const Items extends NoviSchema[]> extends NoviBase<
 				type: 'tuple',
 				custom: this.options?.errors?.type,
 			});
-		if (value.length !== this.items.length)
+
+		const { items, _rest: rest } = this;
+
+		if (value.length < items.length)
 			throw new NoviError(
-				`Novi expected tuple length "${this.items.length}, but got "${value.length}""`,
+				`Novi expected tuple length "${items.length}, but got "${value.length}"`,
 				path,
 			);
 
-		const { items } = this;
+		for (const index in value) {
+			const schema = items[index] ?? rest;
 
-		for (const index in items)
-			value[index] = items[index].parse(value[index], {
+			if (!schema) throw new NoviError(`Unknown index "${index}" for tuple. Use .rest() for rest types`, path ? `${path}[${index}]` : index);
+
+			value[index] = schema.parse(value[index], {
 				path: path ? `${path}[${index}]` : index,
 			});
+		}
 
 		return value as Tuplify<Items>;
 	}
