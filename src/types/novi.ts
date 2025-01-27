@@ -10,6 +10,7 @@ import type { NoviFunction } from '@/structs/NoviFunction';
 import type { NoviInstance } from '@/structs/NoviInstance';
 import type { NoviIntersection } from '@/structs/NoviIntersection';
 import type { NoviJWT } from '@/structs/NoviJWT';
+import type { NoviLazy } from '@/structs/NoviLazy';
 import type { NoviLiteral } from '@/structs/NoviLiteral';
 import type { NoviMap } from '@/structs/NoviMap';
 import type { NoviNever } from '@/structs/NoviNever';
@@ -58,7 +59,8 @@ export type NoviSchema =
 	| NoviCustom<unknown>
 	| NoviFunction
 	| NoviSymbol
-	| NoviFile;
+	| NoviFile
+	| NoviLazy<NoviSchema>;
 
 export type NoviObjectRecord = Record<string, NoviSchema>;
 

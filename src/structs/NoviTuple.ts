@@ -16,8 +16,8 @@ export class NoviTuple<const Items extends NoviSchema[]> extends NoviBase<
 
 	public rest<Rest extends NoviSchema>(rest: Rest) {
 		this._rest = rest;
-		
-		return <NoviTuple<[...Items, ...Rest[]]>><unknown>this;
+
+		return <NoviTuple<[...Items, ...Rest[]]>>(<unknown>this);
 	}
 
 	public _parse(value: unknown, path?: string) {
@@ -39,7 +39,11 @@ export class NoviTuple<const Items extends NoviSchema[]> extends NoviBase<
 		for (const index in value) {
 			const schema = items[index] ?? rest;
 
-			if (!schema) throw new NoviError(`Unknown index "${index}" for tuple. Use .rest() for rest types`, path ? `${path}[${index}]` : index);
+			if (!schema)
+				throw new NoviError(
+					`Unknown index "${index}" for tuple. Use .rest() for rest types`,
+					path ? `${path}[${index}]` : index,
+				);
 
 			value[index] = schema.parse(value[index], {
 				path: path ? `${path}[${index}]` : index,

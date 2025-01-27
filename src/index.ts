@@ -10,6 +10,7 @@ import { NoviFunction } from './structs/NoviFunction';
 import { NoviInstance } from './structs/NoviInstance';
 import { NoviIntersection } from './structs/NoviIntersection';
 import { NoviJWT } from './structs/NoviJWT';
+import { NoviLazy } from './structs/NoviLazy';
 import { NoviLiteral } from './structs/NoviLiteral';
 import { NoviMap } from './structs/NoviMap';
 import { NoviNever } from './structs/NoviNever';
@@ -166,5 +167,10 @@ export namespace n {
 		schema: Schema,
 		options?: NoviSchemaOptions,
 	) => new NoviCatch(fun, schema, options);
+
+	export const lazy = <Schema extends NoviSchema>(
+		fun: () => Schema,
+		options?: NoviSchemaOptions,
+	) => new NoviLazy(fun, options);
 	//#endregion
 }
